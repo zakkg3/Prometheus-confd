@@ -6,8 +6,7 @@ Config by Confd with ssm backend
 
 Provide the environment viarables defined in the confd template in confd/template/prometheus.yml
 
-### Necesary
-
+### Mandatory
 
 API_TARGET_URL = api.yourapp.io:9000
 
@@ -21,7 +20,7 @@ EVAL_INTERVAL_SECS (default 70)
 AWS_REGION (default eu-west-1)
 
 
-Confd its also injecting the paramater storage's keypass
+#### Confd from AWS paramater storage's keypass (SSM)
 
 /path/to/your/prometheus/access_key
 
