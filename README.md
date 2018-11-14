@@ -20,7 +20,7 @@ EVAL_INTERVAL_SECS (default 70)
 AWS_REGION (default eu-west-1)
 
 
-#### Confd its also injecting the paramater storage's keypass
+#### Confd from AWS paramater storage's keypass (SSM)
 
 /path/to/your/prometheus/access_key
 
