@@ -1,0 +1,8 @@
+[template]
+src = "prometheus.yml"
+dest = "/prometehus.yml"
+keys = [
+    "/path/to/your/prometheus/access_key",
+    "/path/to/your/prometheus/secret_key",
+    "/path/to/your/prometheus/barer_token"
+]

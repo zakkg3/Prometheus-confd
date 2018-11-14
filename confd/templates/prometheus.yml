@@ -1,0 +1,42 @@
+global:
+  scrape_interval:     {{getenv "SCRAPE_INTERVAL_SECS" "40"}}s # Set the scrape interval. Default is every 40 secs.
+  evaluation_interval: {{getenv "EVAL_INTERVAL_SECS" "70"}}s # Evaluate rule. The default is every 70 secs.
+  # scrape_timeout is set to the global default (10s).
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+  - static_configs:
+    - targets:
+  # Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+rule_files:
+  # - "first_rules.yml"
+  # - "second_rules.yml"
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+  - job_name: 'prometheus'
+    # metrics_path defaults to '/metrics'
+    # scheme defaults to 'http'.
+    static_configs:
+    - targets: ['localhost:9090']
+
+  - job_name: 'cadvisor'
+    ec2_sd_configs:
+    - region: {{getenv "AWS_REGION" "eu-west-1"}}
+      access_key: {{getv "/path/to/your/prometheus/access_key"}}
+      secret_key: {{getv "/path/to/your/prometheus/secret_key"}}
+      port: {{getenv "PORT" "9100"}}
+    relabel_configs:
+      # Use the instance ID as the instance label
+      - source_labels: [__meta_ec2_instance_id]
+        target_label: instance
+
+  - job_name: api
+    bearer_token: {{getv "/prometheus/barer_token"}}
+    scheme: https
+    static_configs:
+    - targets:
+      - {{getenv "API_TARGET_URL"}}
