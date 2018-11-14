@@ -6,8 +6,7 @@ Config by Confd with ssm backend
 
 Provide the environment viarables defined in the confd template in confd/template/prometheus.yml
 
-### Necesary
-
+### Mandatory
 
 API_TARGET_URL = api.yourapp.io:9000
 
