@@ -1,6 +1,6 @@
 [template]
 src = "prometheus.yml"
-dest = "/prometehus.yml"
+dest = "/etc/prometheus/confd-prometheus.yml"
 keys = [
     "/path/to/your/prometheus/access_key",
     "/path/to/your/prometheus/secret_key",
